@@ -8,7 +8,7 @@
                     <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
                 </ul>
             </form>
-            <ul class="navbar-nav navbar-right">
+            <!-- <ul class="navbar-nav navbar-right">
                 <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                         <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div>
                     </a>
@@ -19,21 +19,20 @@
                         </a>
                     </div>
                 </li>
-            </ul>
+            </ul> -->
         </nav>
         <div class="main-sidebar">
             <aside id="sidebar-wrapper">
                 <div class="sidebar-brand">
-                    <a href="<?= base_url('/dashboard'); ?>">Stisla</a>
+                    <a href="<?= base_url('/user'); ?>">KOMINFO</a>
                 </div>
                 <div class="sidebar-brand sidebar-brand-sm">
-                    <a href="<?= base_url('/dashboard'); ?>">St</a>
+                    <a href="<?= base_url('/user'); ?>">BWI</a>
                 </div>
                 <ul class="sidebar-menu">
-                    <li><a class="nav-link" href="<?= base_url('/dashboard'); ?>"><i class="fas fa-fire"></i><span>Dashboard</span></a></li>
                     <li><a class="nav-link" href="<?= base_url('/user'); ?>"><i class="far fa-user"></i><span>User</span></a></li>
                     <li><a class="nav-link" href="<?= base_url('/barang'); ?>"><i class="fas fa-th-large"></i><span>Barang</span></a></li>
-                    <li><a class="nav-link" href="<?= base_url('/masuk'); ?>"><i class="fas fa-bicycle"></i><span>Barang Masuk</span></a></li>
+                    <li><a class="nav-link" href="<?= base_url('/masuk'); ?>"><i class="fas fa-bicycle"></i><span>Pengembalian Barang</span></a></li>
                     <li><a class="nav-link" href="<?= base_url('/keluar'); ?>"><i class="fas fa-bicycle"></i><span>Peminjaman Barang</span></a></li>
                 </ul>
             </aside>

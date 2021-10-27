@@ -9,33 +9,32 @@
         <div class="row mt-sm-4">
             <div class="col-12 col-md-12 col-lg-7">
                 <div class="card">
-                    <form action="/barang/update/<?= $barang['id_bar']; ?>" method="post">
+                    <form action="/barangMasuk/update/<?= $barangMasuk['id_bm']; ?>" method="post">
                         <?= csrf_field(); ?>
-                        <input type="hidden" name="slug" value="<?= $barang['slug']; ?>">
                         <div class="card-header">
                             <h4>Form Edit</h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="form-group col-md-6 col-12">
-                                    <label>Nama barang</label>
-                                    <input name="nama" type="text" class="form-control" value="<?= $barang['nama']; ?>" required>
+                                    <label for="barang">Barang</label>
+                                    <select name='barang' class="form-control">
+                                        <?php foreach ($barang as $barang) : ?>
+                                            <option value='<?= $barang['id_bar']; ?>' <?php if ($barangMasuk['barang'] == $barang['id_bar']) echo 'selected="selected"'; ?>><?= $barang['nama']; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
                                 </div>
-                                <div class="form-group col-md-6 col-12">
-                                    <label>Detail barang</label>
-                                    <input name="detail_barang" type="text" class="form-control" value="<?= $barang['detail_barang']; ?>" required>
-                                </div>
-                                <div class="form-group col-md-6 col-12">
-                                    <label for="kategori">Kategori</label>
-                                    <select name='kategori' class="form-control">
-                                        <?php foreach ($kategori as $kategori) : ?>
-                                            <option value='<?= $kategori['id_kat']; ?>' <?php if ($barang['kategori'] == $kategori['id_kat']) echo 'selected="selected"'; ?>><?= $kategori['kategori']; ?></option>
+                                <div class="form-group col-md-6 col-12"">
+                                    <label for=" namaUS">Peminjam</label>
+                                    <select name='namaUS' class="form-control">
+                                        <?php foreach ($user as $user) : ?>
+                                            <?php if ($user['role'] == 'admin') continue ?><option value='<?= $user['id_us']; ?>' <?php if ($barangMasuk['barang'] == $barang['id_bar']) echo 'selected="selected"'; ?>><?= $user['namaUSR']; ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6 col-12">
                                     <label>Quantity</label>
-                                    <input name="quantity" type="text" class="form-control" value="<?= $barang['quantity']; ?>" required>
+                                    <input name="quantity" type="text" class="form-control" value="<?= $barangMasuk['quantityBM']; ?>" required>
                                 </div>
                             </div>
                         </div>

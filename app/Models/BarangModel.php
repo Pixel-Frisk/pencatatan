@@ -17,11 +17,20 @@ class BarangModel extends Model
             ->join('kategori', 'barang.kategori = kategori.id_kat')
             ->get()->getResultArray();
     }
-    public function getSpesBarang($slug = false)
+    public function getBarang2()
     {
-        if ($slug == false) {
+        return $this->findAll();
+    }
+    public function getSpesBarang($id = false)
+    {
+        if ($id == false) {
             return $this->findAll();
         }
-        return $this->where(['slug' => $slug])->first();
+        return $this->where(['id_bar' => $id])->first();
+    }
+    public function build()
+    {
+        $db = \Config\Database::connect();
+        return $builder = $db->table('barang');
     }
 }

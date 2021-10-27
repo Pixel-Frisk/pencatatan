@@ -13,31 +13,19 @@
                 </div>
                 <!-- Menambah Akun Sopir -->
                 <div class="modal-body">
-                    <form action="/Pencatatan/saveBarang" method="post">
+                    <form action="/Pencatatan/saveUser" method="post">
                         <?= csrf_field(); ?>
                         <div class="form-group">
-                            <label for="nama">Nama Barang</label>
+                            <label for="nama">Nama</label>
                             <input name="nama" type="text" class="form-control" id="nama" required>
                         </div>
                         <div class="form-group">
-                            <label for="detail_barang">Detail Barang</label>
-                            <textarea name="detail_barang" class="form-control" id="detail_barang" required></textarea>
+                            <label for="noHP">No. Hp</label>
+                            <input type="number" name="noHP" class="form-control" id="noHP" required>
                         </div>
                         <div class="form-group">
-                            <label for="kategori">Kategori</label>
-                            <select name='kategori' class="form-control">
-                                <?php foreach ($kategori as $kategori) : ?>
-                                    <option value='<?= $kategori['id_kat']; ?>'><?= $kategori['kategori']; ?></option>
-                                <?php endforeach; ?>
-                                <option value='belum_ada'>Tambah Kategori...</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <input name="kategori2" type="text" class="form-control" id="kategori2" placeholder="Tambah Kategori...">
-                        </div>
-                        <div class="form-group">
-                            <label for="quantity">Quantity</label>
-                            <input name="quantity" type="number" class="form-control" id="quantity" required>
+                            <label for="email">Email</label>
+                            <input type="email" name="email" type="number" class="form-control" id="email" required>
                         </div>
                         <div class="modal-footer bg-whitesmoke br">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -50,7 +38,7 @@
     </div>
     <section class="section">
         <div class="section-header">
-            <h1>Data Barang</h1>
+            <h1>Data User</h1>
         </div>
         <div class="section-body">
             <div class="row">
@@ -84,25 +72,23 @@
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">No</th>
-                                                        <th scope="col">Barang</th>
-                                                        <th scope="col">Detail</th>
-                                                        <th scope="col">Kategori</th>
-                                                        <th scope="col">Quantity</th>
+                                                        <th scope="col">Nama</th>
+                                                        <th scope="col">No. Hp</th>
+                                                        <th scope="col">Email</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <?php $no = 1 ?>
-                                                    <?php foreach ($barang as $barang) : ?>
+                                                    <?php foreach ($user as $user) : ?>
                                                         <tr>
                                                             <th scope="row"><?= $no++; ?></th>
-                                                            <td><?= $barang['nama']; ?></td>
-                                                            <td><?= $barang['detail_barang']; ?></td>
-                                                            <td><?= $barang['kategori']; ?></td>
-                                                            <td><?= $barang['quantity']; ?></td>
+                                                            <td><?= $user['namaUSR']; ?></td>
+                                                            <td><?= $user['noHP']; ?></td>
+                                                            <td><?= $user['email']; ?></td>
                                                             <td>
-                                                                <a href="/barang/edit/<?= $barang['id_bar']; ?>" class="btn btn-secondary">Edit</a>
-                                                                <form action="/barang/<?= $barang['id_bar']; ?>" method="post" class="d-inline">
+                                                                <a href="/user/edit/<?= $user['id_us']; ?>" class="btn btn-secondary">Edit</a>
+                                                                <form action="/user/<?= $user['id_us']; ?>" method="post" class="d-inline">
                                                                     <?= csrf_field(); ?>
                                                                     <input type="hidden" name="_method" value="DELETE">
                                                                     <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapusnya ?')">Delete</button>
