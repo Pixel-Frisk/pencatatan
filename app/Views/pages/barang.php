@@ -13,7 +13,7 @@
                 </div>
                 <!-- Menambah Akun Sopir -->
                 <div class="modal-body">
-                    <form action="/Pencatatan/saveBarang" method="post">
+                    <form action="<?= base_url(); ?>/Pencatatan/saveBarang" method="post">
                         <?= csrf_field(); ?>
                         <div class="form-group">
                             <label for="nama">Nama Barang</label>
@@ -21,7 +21,7 @@
                         </div>
                         <div class="form-group">
                             <label for="detail_barang">Detail Barang</label>
-                            <textarea name="detail_barang" class="form-control" id="detail_barang" required></textarea>
+                            <textarea name="detail_barang" class="form-control" id="detail_barang"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="kategori">Kategori</label>
@@ -34,6 +34,13 @@
                         </div>
                         <div class="form-group">
                             <input name="kategori2" type="text" class="form-control" id="kategori2" placeholder="Tambah Kategori...">
+                        </div>
+                        <div class="form-group">
+                            <label for="jenis">Jenis Barang</label>
+                            <select name='jenis' class="form-control">
+                                <option value="tetap">Barang Tetap</option>
+                                <option value="habis">Barang Habis Pakai</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="quantity">Quantity</label>
@@ -63,6 +70,16 @@
                                         <span>&times;</span>
                                     </button>
                                     <?= session()->getFlashData('pesan'); ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                        <?php if (session()->getFlashData('gagal')) : ?>
+                            <div class="alert alert-danger alert-dismissible show fade">
+                                <div class="alert-body">
+                                    <button class="close" data-dismiss="alert">
+                                        <span>&times;</span>
+                                    </button>
+                                    <?= session()->getFlashData('gagal'); ?>
                                 </div>
                             </div>
                         <?php endif; ?>
@@ -97,12 +114,20 @@
                                                         <tr>
                                                             <th scope="row"><?= $no++; ?></th>
                                                             <td><?= $barang['nama']; ?></td>
-                                                            <td><?= $barang['detail_barang']; ?></td>
+                                                            <?php if ($barang['detail_barang'] == null) : ?>
+                                                                <td>-</td>
+                                                            <?php endif; ?>
+                                                            <?php if ($barang['detail_barang'] != null) : ?>
+                                                                <td><?= $barang['detail_barang']; ?></td>
+                                                            <?php endif; ?>
                                                             <td><?= $barang['kategori']; ?></td>
                                                             <td><?= $barang['quantity']; ?></td>
                                                             <td>
-                                                                <a href="/barang/edit/<?= $barang['id_bar']; ?>" class="btn btn-secondary">Edit</a>
-                                                                <form action="/barang/<?= $barang['id_bar']; ?>" method="post" class="d-inline">
+                                                                <a href="<?= base_url(); ?>/barang/edit/<?= $barang['id_bar']; ?>" class="btn btn-secondary">Edit</a>
+                                                                <?php if ($barang['jenis'] == 1) : ?>
+                                                                    <a href="<?= base_url(); ?>/barang/lihat/<?= $barang['id_bar']; ?>" class="btn btn-success">Detail</a>
+                                                                <?php endif; ?>
+                                                                <form action="<?= base_url(); ?>/barang/<?= $barang['id_bar']; ?>" method="post" class="d-inline">
                                                                     <?= csrf_field(); ?>
                                                                     <input type="hidden" name="_method" value="DELETE">
                                                                     <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapusnya ?')">Delete</button>

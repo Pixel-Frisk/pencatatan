@@ -9,7 +9,7 @@ class BarangModel extends Model
     protected $table = 'barang';
     protected $primaryKey = 'id_bar';
     protected $useTimestamps = true;
-    protected $allowedFields = ['nama', 'slug', 'detail_barang', 'kategori', 'quantity'];
+    protected $allowedFields = ['nama', 'jenis', 'detail_barang', 'kategori', 'quantity'];
 
     public function getBarang()
     {
@@ -27,6 +27,13 @@ class BarangModel extends Model
             return $this->findAll();
         }
         return $this->where(['id_bar' => $id])->first();
+    }
+    public function getSpesBarang2($id)
+    {
+        return $this->db->table('barang')
+            ->join('barangsn', 'barangsn.id_bars = barang.id_bar')
+            ->where(['id_bar' => $id])
+            ->get()->getResultArray();
     }
     public function build()
     {

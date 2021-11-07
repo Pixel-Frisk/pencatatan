@@ -13,7 +13,7 @@
                 </div>
                 <!-- Menambah Akun Sopir -->
                 <div class="modal-body">
-                    <form action="/Pencatatan/saveUser" method="post">
+                    <form action="<?= base_url(); ?>/Pencatatan/saveUser" method="post">
                         <?= csrf_field(); ?>
                         <div class="form-group">
                             <label for="nama">Nama</label>
@@ -87,8 +87,8 @@
                                                             <td><?= $user['noHP']; ?></td>
                                                             <td><?= $user['email']; ?></td>
                                                             <td>
-                                                                <a href="/user/edit/<?= $user['id_us']; ?>" class="btn btn-secondary">Edit</a>
-                                                                <form action="/user/<?= $user['id_us']; ?>" method="post" class="d-inline">
+                                                                <a href="<?= base_url(); ?>/user/edit/<?= $user['id_us']; ?>" class="btn btn-secondary">Edit</a>
+                                                                <form action="<?= base_url(); ?>/user/<?= $user['id_us']; ?>" method="post" class="d-inline">
                                                                     <?= csrf_field(); ?>
                                                                     <input type="hidden" name="_method" value="DELETE">
                                                                     <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapusnya ?')">Delete</button>

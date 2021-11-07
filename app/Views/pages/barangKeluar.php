@@ -13,7 +13,7 @@
                 </div>
                 <!-- Menambah Akun Sopir -->
                 <div class="modal-body">
-                    <form action="/Pencatatan/saveBK" method="post">
+                    <form action="<?= base_url(); ?>/Pencatatan/saveBK" method="post">
                         <?= csrf_field(); ?>
                         <div class="form-group">
                             <label for="barang">Barang</label>
@@ -107,8 +107,8 @@
                                                             <td><?= $barangKeluar['quantityBK']; ?></td>
                                                             <td><?= $barangKeluar['created_at']; ?></td>
                                                             <td>
-                                                                <a href="/bk/edit/<?= $barangKeluar['id_bk']; ?>" class="btn btn-secondary">Edit</a>
-                                                                <form action="/bk/<?= $barangKeluar['id_bk']; ?>" method="post" class="d-inline">
+                                                                <a href="<?= base_url(); ?>/bk/edit/<?= $barangKeluar['id_bk']; ?>" class="btn btn-secondary">Edit</a>
+                                                                <form action="<?= base_url(); ?>/bk/<?= $barangKeluar['id_bk']; ?>" method="post" class="d-inline">
                                                                     <?= csrf_field(); ?>
                                                                     <input type="hidden" name="_method" value="DELETE">
                                                                     <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapusnya ?')">Delete</button>

@@ -13,23 +13,27 @@
                 </div>
                 <!-- Menambah Akun Sopir -->
                 <div class="modal-body">
-                    <form action="/Pencatatan/saveBM" method="post">
+                    <form action="<?= base_url(); ?>/Pencatatan/saveBM" method="post">
                         <?= csrf_field(); ?>
                         <div class="form-group">
-                            <label for="barang">Pengembali</label>
+                            <label for="barang">Barang</label>
                             <select name='barang' class="form-control">
                                 <?php foreach ($barang as $barang) : ?>
                                     <option value='<?= $barang['id_bar']; ?>'><?= $barang['nama']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="namaUS">Peminjam</label>
                             <select name='namaUS' class="form-control">
                                 <?php foreach ($user as $user) : ?>
                                     <?php if ($user['role'] == 'admin') continue ?><option value='<?= $user['id_us']; ?>'><?= $user['namaUSR']; ?></option>
                                 <?php endforeach; ?>
                             </select>
+                        </div> -->
+                        <div class="form-group">
+                            <label for="namaUS">Peminjam</label>
+                            <input type="text" name="namaUS" class="form-control" id="namaUS" required>
                         </div>
                         <div class="form-group">
                             <label for="quantity">Quantity</label>
@@ -46,7 +50,7 @@
     </div>
     <section class="section">
         <div class="section-header">
-            <h1>Data Pengembalian Barang</h1>
+            <h1>Data Peminjaman Barang</h1>
         </div>
         <div class="section-body">
             <div class="row">
@@ -59,6 +63,16 @@
                                         <span>&times;</span>
                                     </button>
                                     <?= session()->getFlashData('pesan'); ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                        <?php if (session()->getFlashData('gagal')) : ?>
+                            <div class="alert alert-danger alert-dismissible show fade">
+                                <div class="alert-body">
+                                    <button class="close" data-dismiss="alert">
+                                        <span>&times;</span>
+                                    </button>
+                                    <?= session()->getFlashData('gagal'); ?>
                                 </div>
                             </div>
                         <?php endif; ?>
@@ -81,8 +95,9 @@
                                                     <tr>
                                                         <th scope="col">No</th>
                                                         <th scope="col">Barang</th>
-                                                        <th scope="col">Pengembali</th>
+                                                        <th scope="col">Peminjam</th>
                                                         <th scope="col">Quantity</th>
+                                                        <th scope="col">Status</th>
                                                         <th scope="col">Tanggal</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
@@ -93,16 +108,20 @@
                                                         <tr>
                                                             <th scope="row"><?= $no++; ?></th>
                                                             <td><?= $barangMasuk['nama']; ?></td>
-                                                            <td><?= $barangMasuk['namaUSR']; ?></td>
+                                                            <td><?= $barangMasuk['namaUS']; ?></td>
                                                             <td><?= $barangMasuk['quantityBM']; ?></td>
-                                                            <td><?= $barangMasuk['created_at']; ?></td>
+                                                            <td><?php if ($barangMasuk['status'] == 0) echo 'Dipinjam' ?><?php if ($barangMasuk['status'] == 1) echo 'Dikembalikan' ?></td>
+                                                            <td><?= $barangMasuk['tglMas']; ?></td>
                                                             <td>
-                                                                <a href="/bm/edit/<?= $barangMasuk['id_bm']; ?>" class="btn btn-secondary">Edit</a>
-                                                                <form action="/bm/<?= $barangMasuk['id_bm']; ?>" method="post" class="d-inline">
+                                                                <?php if ($barangMasuk['status'] == 0) : ?>
+                                                                    <a href="<?= base_url(); ?>/bm/kembali/<?= $barangMasuk['id_bm']; ?>" class="btn btn-success" onclick="return confirm('Apakah barang sudah dikembalikan ?')">Dikembalikan?</a>
+                                                                <?php endif; ?>
+                                                                <!-- <a href="<?= base_url(); ?>/bm/edit/<?= $barangMasuk['id_bm']; ?>" class="btn btn-secondary">Edit</a> -->
+                                                                <!-- <form action="<?= base_url(); ?>/bm/<?= $barangMasuk['id_bm']; ?>" method="post" class="d-inline">
                                                                     <?= csrf_field(); ?>
                                                                     <input type="hidden" name="_method" value="DELETE">
                                                                     <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapusnya ?')">Delete</button>
-                                                                </form>
+                                                                </form> -->
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>

@@ -9,7 +9,7 @@
         <div class="row mt-sm-4">
             <div class="col-12 col-md-12 col-lg-7">
                 <div class="card">
-                    <form action="/barangMasuk/update/<?= $barangMasuk['id_bm']; ?>" method="post">
+                    <form action="<?= base_url(); ?>/barangMasuk/update/<?= $barangMasuk['id_bm']; ?>" method="post">
                         <?= csrf_field(); ?>
                         <div class="card-header">
                             <h4>Form Edit</h4>
@@ -24,13 +24,9 @@
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-                                <div class="form-group col-md-6 col-12"">
-                                    <label for=" namaUS">Peminjam</label>
-                                    <select name='namaUS' class="form-control">
-                                        <?php foreach ($user as $user) : ?>
-                                            <?php if ($user['role'] == 'admin') continue ?><option value='<?= $user['id_us']; ?>' <?php if ($barangMasuk['barang'] == $barang['id_bar']) echo 'selected="selected"'; ?>><?= $user['namaUSR']; ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
+                                <div class="form-group">
+                                    <label for="namaUS">Peminjam</label>
+                                    <input type="text" name="namaUS" class="form-control" id="namaUS" value="<?= $barangMasuk['namaUS']; ?>" required>
                                 </div>
                                 <div class="form-group col-md-6 col-12">
                                     <label>Quantity</label>

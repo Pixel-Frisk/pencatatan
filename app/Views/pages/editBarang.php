@@ -9,9 +9,8 @@
         <div class="row mt-sm-4">
             <div class="col-12 col-md-12 col-lg-7">
                 <div class="card">
-                    <form action="/barang/update/<?= $barang['id_bar']; ?>" method="post">
+                    <form action="<?= base_url(); ?>/barang/update/<?= $barang['id_bar']; ?>" method="post">
                         <?= csrf_field(); ?>
-                        <input type="hidden" name="slug" value="<?= $barang['slug']; ?>">
                         <div class="card-header">
                             <h4>Form Edit</h4>
                         </div>

@@ -9,7 +9,7 @@
         <div class="row mt-sm-4">
             <div class="col-12 col-md-12 col-lg-7">
                 <div class="card">
-                    <form action="/user/update/<?= $users['id_us']; ?>" method="post">
+                    <form action="<?= base_url(); ?>/user/update/<?= $users['id_us']; ?>" method="post">
                         <?= csrf_field(); ?>
                         <div class="card-header">
                             <h4>Form Edit</h4>

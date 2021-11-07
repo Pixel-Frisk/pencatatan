@@ -30,10 +30,11 @@
                     <a href="<?= base_url('/user'); ?>">BWI</a>
                 </div>
                 <ul class="sidebar-menu">
-                    <li><a class="nav-link" href="<?= base_url('/user'); ?>"><i class="far fa-user"></i><span>User</span></a></li>
+                    <!-- <li><a class="nav-link" href="<?= base_url('/user'); ?>"><i class="far fa-user"></i><span>User</span></a></li> -->
                     <li><a class="nav-link" href="<?= base_url('/barang'); ?>"><i class="fas fa-th-large"></i><span>Barang</span></a></li>
-                    <li><a class="nav-link" href="<?= base_url('/masuk'); ?>"><i class="fas fa-bicycle"></i><span>Pengembalian Barang</span></a></li>
-                    <li><a class="nav-link" href="<?= base_url('/keluar'); ?>"><i class="fas fa-bicycle"></i><span>Peminjaman Barang</span></a></li>
+                    <li><a class="nav-link" href="<?= base_url('/masuk'); ?>"><i class="fas fa-pencil-ruler"></i><span>Peminjaman Barang</span></a></li>
+                    <li><a class="nav-link" href="<?= base_url('/pakai'); ?>"><i class="fas fa-ellipsis-h"></i><span>Pemakaian Barang</span></a></li>
+                    <li><a class="nav-link" href="<?= base_url('/laporan'); ?>"><i class="far fa-file-alt"></i><span>Laporan</span></a></li>
                 </ul>
             </aside>
         </div>

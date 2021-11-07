@@ -31,7 +31,7 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Pencatatan::user');
+$routes->get('/', 'Pencatatan::barang');
 // $routes->get('/dashboard', 'Pencatatan::index');
 
 $routes->get('/user', 'Pencatatan::user');
@@ -42,17 +42,22 @@ $routes->delete('/user/(:num)', 'Pencatatan::deleteUser/$1');
 $routes->get('/barang', 'Pencatatan::barang');
 $routes->delete('/barang/(:num)', 'Pencatatan::delete/$1');
 $routes->get('/barang/edit/(:segment)', 'Pencatatan::edit/$1');
+$routes->get('/barang/lihat/(:segment)', 'Pencatatan::lihatBar/$1');
 $routes->post('/barang/update/(:num)', 'Pencatatan::update/$1');
 
 $routes->get('/masuk', 'Pencatatan::masuk');
 $routes->delete('/bm/(:num)', 'Pencatatan::deleteBM/$1');
 $routes->get('/bm/edit/(:segment)', 'Pencatatan::editBM/$1');
 $routes->post('/barangMasuk/update/(:num)', 'Pencatatan::updateBM/$1');
+$routes->get('/bm/kembali/(:segment)', 'Pencatatan::kembaliBM/$1');
 
-$routes->get('/keluar', 'Pencatatan::keluar');
-$routes->delete('/bk/(:num)', 'Pencatatan::deleteBK/$1');
-$routes->get('/bk/edit/(:segment)', 'Pencatatan::editBK/$1');
-$routes->post('/barangKeluar/update/(:num)', 'Pencatatan::updateBK/$1');
+$routes->get('/laporan', 'Pencatatan::keluar');
+$routes->get('/cetak/(:segment)', 'Pencatatan::cetak/$1');
+
+$routes->get('/pakai', 'Pencatatan::pakai');
+// $routes->delete('/bk/(:num)', 'Pencatatan::deleteBK/$1');
+// $routes->get('/bk/edit/(:segment)', 'Pencatatan::editBK/$1');
+// $routes->post('/barangKeluar/update/(:num)', 'Pencatatan::updateBK/$1');
 
 /*
  * --------------------------------------------------------------------
