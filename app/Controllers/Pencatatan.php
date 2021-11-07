@@ -212,7 +212,7 @@ class Pencatatan extends BaseController
     }
     public function update($id)
     {
-        if ($this->request->getVar('nama') == null || $this->request->getVar('kategori') == null || $this->request->getVar('jenis') == null || $this->request->getVar('quantity') == null || $this->request->getVar('quantity') == 0) {
+        if ($this->request->getVar('nama') == null || $this->request->getVar('kategori') == null || $this->request->getVar('quantity') == null || $this->request->getVar('quantity') == 0) {
             session()->setFlashdata('gagal', 'Data Tidak Boleh Kosong.');
         } elseif ($this->request->getVar('jenis') == 1 && $this->request->getVar('detail_barang') == null) {
             session()->setFlashdata('gagal', 'Data Tidak Boleh Kosong.');
